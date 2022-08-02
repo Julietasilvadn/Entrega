@@ -4,7 +4,16 @@ class Usuario(models.Model):
 
     nombre=models.CharField(max_length=40)
     apellido= models.CharField(max_length=30)
+    dni= models.CharField(max_length=8)
     email= models.EmailField()
+    contraseña= models.CharField(max_length=30)
+    creado = models.DateTimeField(auto_now_add=True, verbose_name="Fecha de creación")
+    actualizado = models.DateTimeField(auto_now=True, verbose_name="Fecha de cambio")
+    
+    def __str__(self):
+        return self.nombre
+
+
 
 
 class Mascota(models.Model):
