@@ -8,10 +8,10 @@ from AppSpa.views import base
 from . import views 
 
 urlpatterns = [
-    path('inicio', base, name = 'Inicio'),
-    path('suscripcion/', views.inscripcion, name='Inscripcion Cliente'),
-    path('login/', mostrar_login, name="log-in"),
-    path('mascotas/', mostrar_mascotas, name="mascotas"),
-    path('perfil/', mostrar_perfil, name="perfil"),
-    path('reserva/', mostrar_reserva, name="reserva"),
+    path('inicio/', mostrar_inicio, name='inicio'),
+    path('suscripcion/', views.inscripcion, name='inscripcion_cliente'),
+    path('login/', mostrar_login, name='log_in'),
+    path('mascotas/', mostrar_mascotas, name='mascotas'),
+    path('perfil/', mostrar_perfil, name='perfil'),
+    path('reserva/', mostrar_reserva, name='reserva'),
 ]

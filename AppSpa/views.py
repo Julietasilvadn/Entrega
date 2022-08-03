@@ -4,8 +4,6 @@ from datetime import date, datetime
 from AppSpa.forms import Cliente, Mascota
 from AppSpa.models import Usuario, Mascota
 
-def base(request):
-    return render (request, 'inicio/index.html', {})
 
 def inscripcion (request):
     if request.method == 'POST':
@@ -41,7 +39,7 @@ def mostrar_login(request):
     return render(request, "AppSpa/login.html")
 
 def mostrar_inicio(request):
-    return render(request, "AppSpa/inicio.html")
+    return render(request, "AppSpa/inicio.html", {})
 
 def mostrar_mascotas(request):
     return render(request, "AppSpa/mascotas.html")
