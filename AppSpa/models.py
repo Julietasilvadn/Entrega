@@ -7,8 +7,8 @@ class Usuario(models.Model):
     dni= models.CharField(max_length=8)
     email= models.EmailField()
     contraseña= models.CharField(max_length=30)
-    creado = models.DateTimeField(auto_now_add=True, verbose_name="Fecha de creación")
-    actualizado = models.DateTimeField(auto_now=True, verbose_name="Fecha de cambio")
+    creado = models.DateTimeField(auto_now_add = True)
+    actualizado = models.DateTimeField(auto_now = True)
     
     def __str__(self):
         return self.nombre
