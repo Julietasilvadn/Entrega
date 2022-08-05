@@ -1,39 +1,36 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from urllib import request
+from urllib.request import Request
 from django.http import HttpResponse
 from datetime import date, datetime 
-from AppSpa.forms import Cliente, Mascota
 from AppSpa.models import Usuario, Mascota
+from django.urls import reverse, reverse_lazy
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, TemplateView
+from django.views.generic.detail import DetailView
 
 
-def inscripcion (request):
-    if request.method == 'POST':
-        inscripcion_cliente = Cliente (request.POST)
-        if inscripcion_cliente.is_valid:
-            datos = inscripcion_cliente.cleaned_data
-            cliente = Usuario (nombre=datos['nombre'], apellido=datos['apellido'], dni=datos['dni'], email=datos['email'], contraseña=datos["contraseña"], creado=datos['fecha de creacion'], actualizado=datos['fecha de cambio '])
-            cliente.save()
+class CreateUsuario(CreateView):
+    model = Usuario
+    template_name = 'AppSpa/login.html'
+    fields = ['nombre', 'apellido', 'dni', 'email', 'contraseña']
 
-            return render (request, 'index.html', {'mensaje':'Cliente ingresado con exito'})
+class UpdateUsuario(UpdateView):
+    model = Usuario
+    succes_url = 'AppSpa/actualizar'
+    fields = ['nombre', 'apellido', 'contraseña']
 
-        else:
-            inscripcion_cliente = Cliente ()
+class DeleteUsuario(DeleteView):
+    model = Usuario
+    template_name = 'AppSpa/perfil.html'
 
-        return render(request, 'index.html', {'incrispcion_cliente': inscripcion_cliente})
+class ListUsuario(ListView):
+    model = Usuario
+    template_name = 'AppSpa/listausuarios.html'
 
-
-def animal (request):
-    if request.method == 'POST':
-        lista_mascota = Mascota (request.POST)
-        if lista_mascota.is_valid:
-                datos = lista_mascota.cleaned_data
-                mascota = Mascota (nombre=datos['nombre'], raza=datos['raza'], edad=datos['edad'])         
-                mascota.save()
-
-                return render (request, 'index.html', {'mensaje':'la mascota ha sido ingresada'})
-        else:
-                lista_mascota = Mascota ()
-
-        return render(request, 'index.html', {'lista_mascota': lista_mascota})
+class DetalleUsuario(DetailView):
+    model = Usuario
+    template_name = 'AppSpa/perfil.html'
 
 def mostrar_login(request):
     return render(request, "AppSpa/login.html")
@@ -49,3 +46,5 @@ def mostrar_perfil(request):
 
 def mostrar_reserva(request):
     return render(request, "AppSpa/reserva.html")
+
+
