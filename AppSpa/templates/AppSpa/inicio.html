@@ -8,7 +8,10 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>AppSpa</title>
+        
         <!-- Favicon-->
+        {% block link-css  %}
+        {% endblock %}
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
@@ -18,7 +21,7 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="{% static 'AppSpa/css/styles.css'%}" rel="stylesheet" />
     </head>
-    <body id="page-top">
+    <body id="page-top" >
 
         <!-- NAVEGACION -->
         <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
@@ -33,7 +36,6 @@
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="{% url 'perfil'  %}">Perfil</a></li>
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="{% url 'reserva' %}">Reserva</a></li>
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="{% url 'log_in' %}">Log In</a></li>
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="{% url 'lista' %}">Lista</a></li>
                     </ul>
                 </div>
             </div>
@@ -41,13 +43,30 @@
         <!-- FIN NAVEGACION -->
 
         <!--  CUERPO-->
-        <header class="masthead bg-primary text-white text-center">
+        <header class="cienvh masthead bg-primary text-white text-center">
             <div class="container d-flex align-items-center flex-column">
                
                 <!-- Masthead Heading-->
                 <h1 class="masthead-heading text-uppercase mb-0">
                     {% block cuerpo %}
-                             Inicio   
+                    <div class="main-body">
+                       
+
+
+
+
+
+
+
+                        Inicio   
+
+
+
+
+
+
+
+                    </div>
                     {% endblock %}
                 </h1>
                 <!-- Icon Divider-->
@@ -62,6 +81,7 @@
         <!-- FIN CUERPO -->
         
         <!-- PIE DE PAGINA-->
+        <div class="footer-main">
         <footer class="footer text-center">
             <div class="container">
                 <div class="row">
@@ -86,6 +106,7 @@
         <!-- Copyright Section-->
         <div class="copyright py-4 text-center text-white">
             <div class="container"><small>Copyright &copy; Spa Website 2022</small></div>
+        </div>
         </div>
         <!-- Portfolio Modals-->
         <!-- Portfolio Modal 1-->
