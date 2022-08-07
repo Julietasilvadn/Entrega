@@ -8,21 +8,14 @@ from django.urls import reverse, reverse_lazy
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, TemplateView
 from django.views.generic.detail import DetailView
-from AppSpa.forms import *
+from AppSpa.forms import CrearUsuarioFormulario
 
-def registrarseFormulario(request):
-    if request.method == 'POST':
-        miFormulario = Usuario(request.POST)
-        print(miFormulario)
-        if miFormulario.is_valid:
-            informacion = miFormulario.cleaned_data
-            usuario = Usuario(nombre=informacion["nombre"], apellido=informacion["apellido"], dni=informacion["dni"], email=informacion["email"], contraseña=informacion["contraseña"])
-            usuario.save()
-            return render(request, "AppSpa/inicio.html")
-    else:
-        miFormulario = Usuario()
-    return render(request, "AppSpa/registrarse_form.html", {"miFormulario":miFormulario})
-
+class UsuarioCreateView(CreateView):
+    model = Usuario
+    template_name = "registrarse_form.html"
+    fields = "__all__"
+    def get_success_url(self) -> str:
+        return reverse_lazy('inicio')
 
 def mostrar_login(request):
     return render(request, "AppSpa/login.html")

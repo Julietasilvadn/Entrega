@@ -14,4 +14,5 @@ urlpatterns = [
     path('perfil/', mostrar_perfil, name='perfil'),
     path('reserva/', mostrar_reserva, name='reserva'),
     path('registro/', mostrar_registro, name='registro'),
+    path('crear/usuario/', UsuarioCreateView.as_view(), name='crear_usuario'),
     ]

@@ -2,8 +2,8 @@ from django import forms
 
 
 class CrearUsuarioFormulario(forms.Form):
-    nombre=forms.CharField(max_length=40)
-    apellido= forms.CharField(max_length=30)
-    dni= forms.CharField(max_length=8)
+    nombre=forms.CharField()
+    apellido= forms.CharField()
+    dni= forms.CharField()
     email= forms.EmailField()
-    contraseña= forms.CharField(max_length=30)
+    contraseña= forms.CharField()
