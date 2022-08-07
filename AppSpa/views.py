@@ -13,7 +13,10 @@ from django.views.generic.detail import DetailView
 class CreateUsuario(CreateView):
     model = Usuario
     template_name = 'AppSpa/login.html'
-    fields = ['nombre', 'apellido', 'dni', 'email', 'contraseña']
+    fields = "__all__"
+
+    def get_success_url(self) -> str:
+        return reverse_lazy('inicio')
 
 class UpdateUsuario(UpdateView):
     model = Usuario
@@ -46,5 +49,8 @@ def mostrar_perfil(request):
 
 def mostrar_reserva(request):
     return render(request, "AppSpa/reserva.html")
+
+def mostrar_registro(request):
+    return render(request, "AppSpa/registrarse.html")
 
 
