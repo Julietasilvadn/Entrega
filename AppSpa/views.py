@@ -3,37 +3,26 @@ from urllib import request
 from urllib.request import Request
 from django.http import HttpResponse
 from datetime import date, datetime 
-from AppSpa.models import Usuario, Mascota
+from AppSpa.models import *
 from django.urls import reverse, reverse_lazy
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, TemplateView
 from django.views.generic.detail import DetailView
+from AppSpa.forms import *
 
+def registrarseFormulario(request):
+    if request.method == 'POST':
+        miFormulario = Usuario(request.POST)
+        print(miFormulario)
+        if miFormulario.is_valid:
+            informacion = miFormulario.cleaned_data
+            usuario = Usuario(nombre=informacion["nombre"], apellido=informacion["apellido"], dni=informacion["dni"], email=informacion["email"], contraseña=informacion["contraseña"])
+            usuario.save()
+            return render(request, "AppSpa/inicio.html")
+    else:
+        miFormulario = Usuario()
+    return render(request, "AppSpa/registrarse_form.html", {"miFormulario":miFormulario})
 
-class CreateUsuario(CreateView):
-    model = Usuario
-    template_name = 'AppSpa/login.html'
-    fields = "__all__"
-
-    def get_success_url(self) -> str:
-        return reverse_lazy('inicio')
-
-class UpdateUsuario(UpdateView):
-    model = Usuario
-    succes_url = 'AppSpa/actualizar'
-    fields = ['nombre', 'apellido', 'contraseña']
-
-class DeleteUsuario(DeleteView):
-    model = Usuario
-    template_name = 'AppSpa/perfil.html'
-
-class ListUsuario(ListView):
-    model = Usuario
-    template_name = 'AppSpa/listausuarios.html'
-
-class DetalleUsuario(DetailView):
-    model = Usuario
-    template_name = 'AppSpa/perfil.html'
 
 def mostrar_login(request):
     return render(request, "AppSpa/login.html")
