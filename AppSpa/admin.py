@@ -4,3 +4,5 @@ from .models import *
 admin.site.register(Usuario)
 
 admin.site.register(Mascota)
+
+admin.site.register(Reserva)

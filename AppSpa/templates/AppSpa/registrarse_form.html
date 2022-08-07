@@ -6,12 +6,13 @@
     <div class="row mt-3">
       <div class="col-md-9 mx-auto">
         <div>
-            <form action="" method="post">{% csrf_token %}
+            <form action="" method="POST">
+              {% csrf_token %}
                 <table style="color: black; " >
-                    {{ form.as_table }}
+                    {{ UsuarioFormulario.as_table }}
                 </table>
                 <br>
-                <input type="submit" value="Crear página" />
+                <input type="submit", value="Guardar">
             </form>
         </div>
       </div>
