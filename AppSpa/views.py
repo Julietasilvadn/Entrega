@@ -42,4 +42,73 @@ def registrarse_formulario(request):
         miFormulario= UsuarioFormulario()
     return render(request, "AppSpa/registrarse_form.html", {"miFormulario":miFormulario})
 
+def Usuario (request):
+    if request.method == 'POST':
+        formulariopersona = UsuarioFormulario(request.POST)
 
+        if formulariopersona.is_valid:
+            informacion = formulariopersona.cleaned_data
+
+            usuario = Usuario (nombre = informacion ['nombre'], apellido = informacion ['apellido'], dni = informacion ['dni'], email = informacion ['email'], contraseña = informacion ['contraseña'])
+
+            usuario.save()
+
+            return render (request, 'AppSpa/perfil.html')
+    else:
+        formulariopersona = UsuarioFormulario()
+
+    return render (request, 'AppSpa/login.html', {'formulariopersona': formulariopersona})
+
+def eliminarUsuario (request, usuario_nombre):
+    usuario = Usuario.objects.get(nombre=usuario_nombre)
+    usuario.delete()
+
+    usuarios = Usuario.objects.all ()
+    contexto = {'usuarios':usuarios}
+    return render (request, 'AppSpa/listausuarios.html', contexto)
+
+def editarUsuario (request, usuario_nombre):
+    usuario = Usuario.objects.get(nombre=usuario_nombre)
+
+    if request.method == 'POST':
+        formulariopersona = UsuarioFormulario(request.POST)
+
+        if formulariopersona.is_valid:
+            informacion = formulariopersona.cleaned_data
+
+            usuario.nombre = informacion['nombre']
+            usuario.apellido = informacion['apellido']
+            usuario.email = informacion['email']
+            usuario.contraseña = informacion['contraseña']
+
+            usuario.save()
+
+            return render(request, 'AppSpa/inicio.html')
+
+    else:
+        formulariopersona = UsuarioFormulario(initial={'nombre':usuario.nombre, 'apellido':usuario.apellido, 'dni':usuario.dni, 'email':usuario.email, 'contraseña':usuario.contraseña})
+
+        return render(request,'AppSpa/perfil.html', {'formulariopersona':formulariopersona, 'usuario_nombre':usuario_nombre})
+
+
+class CreateUsuario(CreateView):
+    model = Usuario
+    template_name = 'AppSpa/login.html'
+    fields = ['nombre', 'apellido', 'dni', 'email', 'contraseña']
+
+class UpdateUsuario(UpdateView):
+    model = Usuario
+    succes_url = 'AppSpa/actualizar'
+    fields = ['nombre', 'apellido', 'contraseña']
+
+class DeleteUsuario(DeleteView):
+    model = Usuario
+    template_name = 'AppSpa/perfil.html'
+
+class ListUsuario(ListView):
+    model = Usuario
+    template_name = 'AppSpa/listausuarios.html'
+
+class DetalleUsuario(DetailView):
+    model = Usuario
+    template_name = 'AppSpa/perfil.html'
