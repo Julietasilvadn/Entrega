@@ -112,3 +112,8 @@ class ListUsuario(ListView):
 class DetalleUsuario(DetailView):
     model = Usuario
     template_name = 'AppSpa/perfil.html'
+
+def inicio(request):
+    avatares = Avatar.objects.filter(user=request.user.id)
+    return render (request,'AppSpa/perfil.html', {'url':avatares[0].imagen.url})
+    
