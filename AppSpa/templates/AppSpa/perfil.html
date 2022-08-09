@@ -3,4 +3,14 @@
 {% block cuerpo  %}
         <div> PERFIL </div>
 
+        <p>Nombre del usuario: <i>{{ Usuario.nombre }}</i></p>
+        <p>Apellido del usuario: <i>{{ Usuario.apellido }}</i></p>
+        <p>DNI: <i>{{ Usuario.dni }}</i></p>
+        <p>Email: <i>{{ Usuario.email }}</i></p>
+        <p>Contraseña: <i>{{ Usuario.contraseña }}</i></p>
+        <p>
+
+                <a href ="{% url 'list/' %}"> Regresar</a>
+        </p>
+
 {% endblock %}

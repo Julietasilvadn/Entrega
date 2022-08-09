@@ -9,7 +9,8 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, TemplateView
 from django.views.generic.detail import DetailView
 from AppSpa.forms import  *
-
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import login, logout, authenticate
 
 def mostrar_login(request):
     return render(request, "AppSpa/login.html")
@@ -42,9 +43,10 @@ def registrarse_formulario(request):
         miFormulario= UsuarioFormulario()
     return render(request, "AppSpa/registrarse.html", {"miFormulario":miFormulario})
 
-def Usuario (request):
+def crearUsuario (request):
     if request.method == 'POST':
         formulariopersona = UsuarioFormulario(request.POST)
+        print(formulariopersona)
 
         if formulariopersona.is_valid:
             informacion = formulariopersona.cleaned_data
@@ -72,6 +74,7 @@ def editarUsuario (request, usuario_nombre):
 
     if request.method == 'POST':
         formulariopersona = UsuarioFormulario(request.POST)
+        print(formulariopersona)
 
         if formulariopersona.is_valid:
             informacion = formulariopersona.cleaned_data
@@ -103,7 +106,7 @@ class UpdateUsuario(UpdateView):
 
 class DeleteUsuario(DeleteView):
     model = Usuario
-    template_name = 'AppSpa/perfil.html'
+    template_name = 'AppSpa/listausuarios.html'
 
 class ListUsuario(ListView):
     model = Usuario
@@ -116,4 +119,38 @@ class DetalleUsuario(DetailView):
 def inicio(request):
     avatares = Avatar.objects.filter(user=request.user.id)
     return render (request,'AppSpa/perfil.html', {'url':avatares[0].imagen.url})
-    
+
+def login_request(request):
+
+    if request.method =="POST":
+        form = AuthenticationForm(request, data = request.POST)
+
+        if form.is_valid():
+            usuario = form.cleaned_data.get('username')
+            contraseña = form.cleaned_data.get('contraseña')
+
+            user = authenticate(usernarme=usuario, contraseña=contraseña)
+
+            if user is not None:
+                login (request, user)
+
+                return render(request, 'AppSpa/inicio.html', {"Mensaje":f"Bienvenido {usuario}"})
+            else:
+                return render(request, 'AppSpa/inicio.html', {'mensaje':'Error, ha ingresado incorrectamente los datos'})
+        else:
+            return render(request, 'AppSpa/inicio.html', {'mensaje':'Error, no existe el usuario'})
+    form = AuthenticationForm()
+
+    return render(request, 'AppSpa/login.html', {'form':form})
+
+def register(request):
+    if request.method == 'POST':
+        form = UsuarioFormulario(reqquest.POST)
+        if form.is_valid:
+            username = form.cleaned_data['username']
+            form.save()
+            return render (request, 'AppSpa/inicio.html', {'mensaje':'Usuario creado'})
+    else:
+        form = UsuarioFormulario()
+
+    return render(request, 'AppSpa/login.html', {'form':form})
