@@ -3,5 +3,37 @@
 {% block cuerpo  %}
 
     <div> Lista USUARIOS </div>
+    
+<body>
+    
+    {% for Usuario in object_list %}
+    {% endfor %}
+    <li>
+        <p> Nombre: {{ Usuario.nombre }}</p>
+        <p>
+            <a href="{% url 'detalle/' %}">Ver</a>
+            <a href="{% url 'editarusuario/' Usuario.id %}">Editar</a>
+            <a href="{% url 'eliminarusuario/' Usuario.id %}">Borrar</a>
 
+        </p>
+    </li>
+
+    <li>{{p}}</li>
+    <button>
+        <a href="{% url 'eliminarusuario' p.nombre %}"> Eliminar</a>
+    </button>
+
+    <a href="{% url 'formulario/registro/' %}">Agregar otro Usuario</a>
+    
+
+    <form method="post">{% csrf_token %}
+        ¿Estás seguro que deseas borrar el usuario "{{ object }}"?
+        <input type="'submit" value="'submit"/>
+
+
+
+    </form>
+
+    
+</body>
 {% endblock %}
