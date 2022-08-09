@@ -40,7 +40,7 @@ def registrarse_formulario(request):
             return render(request, "AppSpa/inicio.html")
     else:
         miFormulario= UsuarioFormulario()
-    return render(request, "AppSpa/registrarse_form.html", {"miFormulario":miFormulario})
+    return render(request, "AppSpa/registrarse.html", {"miFormulario":miFormulario})
 
 def Usuario (request):
     if request.method == 'POST':
