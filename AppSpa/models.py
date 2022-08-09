@@ -4,7 +4,7 @@ class Usuario(models.Model):
 
     nombre=models.CharField(max_length=40)
     apellido= models.CharField(max_length=30)
-    dni= models.IntegerField(max_length=8)
+    dni= models.IntegerField()
     email= models.EmailField()
     contraseña= models.CharField(max_length=30)
     

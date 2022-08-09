@@ -34,8 +34,8 @@ def registrarse_formulario(request):
         miFormulario = UsuarioFormulario(request.POST)
         print(miFormulario)
         if miFormulario.is_valid:
-            informacion = miFormulario.cleaned_data
-            usuario = Usuario (nombre= informacion['nombre'], apelido= informacion['apellido'], dni= informacion['dni'], email= informacion['email'], contraseña= informacion['contraseña'])
+            
+            usuario = Usuario (nombre= miFormulario['nombre'], apelido= miFormulario['apellido'], dni= miFormulario['dni'], email= miFormulario['email'], contraseña= miFormulario['contraseña'])
             usuario.save()
             return render(request, "AppSpa/inicio.html")
     else:
