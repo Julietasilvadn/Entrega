@@ -19,6 +19,5 @@ urlpatterns = [
     path('mascotas/', mostrar_mascotas, name='mascotas'),
     path('perfil/', mostrar_perfil, name='perfil'),
     path('reserva/', mostrar_reserva, name='reserva'),
-    path('registro/', mostrar_registro, name='registro'),
-    path('formulario/registro/', registrarse_formulario, name= 'formulario'),
+    path('registro/', registrarse_formulario, name='registro'),
     ]

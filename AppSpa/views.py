@@ -28,20 +28,20 @@ def mostrar_reserva(request):
     return render(request, "AppSpa/reserva.html")
 
 def mostrar_registro(request):
-    return render(request, "AppSpa/registrarse.html")
+    return render(request, "AppSpa/registrarse_form.html")
 
 def registrarse_formulario(request):
     if request.method == "POST":
         miFormulario = UsuarioFormulario(request.POST)
         print(miFormulario)
         if miFormulario.is_valid:
-            
-            usuario = Usuario (nombre= miFormulario['nombre'], apelido= miFormulario['apellido'], dni= miFormulario['dni'], email= miFormulario['email'], contraseña= miFormulario['contraseña'])
+            informacion = miFormulario.cleaned_data
+            usuario = Usuario (nombre= informacion['nombre'], apellido= informacion['apellido'], dni= informacion['dni'], email= informacion['email'], contraseña= informacion['contraseña'])
             usuario.save()
             return render(request, "AppSpa/inicio.html")
     else:
         miFormulario= UsuarioFormulario()
-    return render(request, "AppSpa/registrarse.html", {"miFormulario":miFormulario})
+    return render(request, "AppSpa/registrarse_form.html", {"miFormulario":miFormulario})
 
 def crearUsuario (request):
     if request.method == 'POST':
@@ -145,7 +145,7 @@ def login_request(request):
 
 def register(request):
     if request.method == 'POST':
-        form = UsuarioFormulario(reqquest.POST)
+        form = UsuarioFormulario(request.POST)
         if form.is_valid:
             username = form.cleaned_data['username']
             form.save()

@@ -9,7 +9,7 @@ class Usuario(models.Model):
     contraseña= models.CharField(max_length=30)
     
     def __str__(self):
-        return f"Nombre: {self.nombre} - Apellido: {self.apellido} - DNI: {self.dni} - Email: {self.email} - Contraseña: {self.contraseña} - Creado: {self.creado} - Actualizado: {self.actualizado}"
+        return f"Nombre: {self.nombre} - Apellido: {self.apellido} - DNI: {self.dni} - Email: {self.email} - Contraseña: {self.contraseña}"
 
 class Mascota(models.Model):
     nombre= models.CharField(max_length=30)

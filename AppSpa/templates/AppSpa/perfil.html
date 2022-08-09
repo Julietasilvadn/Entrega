@@ -1,4 +1,4 @@
-{% extends "AppSpa/inicio.html" %}
+{% extends "AppSpa/base.html" %}
 
 {% block cuerpo  %}
         <div> PERFIL </div>
@@ -10,7 +10,7 @@
         <p>Contraseña: <i>{{ Usuario.contraseña }}</i></p>
         <p>
 
-                <a href ="{% url 'list/' %}"> Regresar</a>
+                <a href ="{% url 'lista' %}"> Regresar</a>
         </p>
 
 {% endblock %}
