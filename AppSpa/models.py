@@ -27,3 +27,7 @@ class Reserva(models.Model):
 
     def __str__(self):
         return f"Dueño: {self.dueño} - Mascota: {self.mascota} - Fecha: {self.fecha}"
+
+class Avatar(models.Model):
+    user = models.ForeignKey(Usuario, on_delete=models.CASCADE)
+    imagen= models.ImageField(upload_to='avatares', null=True, blank=True)
