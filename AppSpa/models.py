@@ -31,3 +31,6 @@ class Reserva(models.Model):
 class Avatar(models.Model):
     user = models.ForeignKey(Usuario, on_delete=models.CASCADE)
     imagen= models.ImageField(upload_to='avatares', null=True, blank=True)
+
+    def __str__(self):
+        return f"{self.user.nombre} tiene una imagen cargada"
