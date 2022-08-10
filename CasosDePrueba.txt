@@ -1,0 +1,18 @@
+Nombre del Proyecto:	Spa Animal	Navegador:	Chrome		
+No Caso de Prueba:	100	Versión:	Versión 103.0.5060.134 		
+Escrito Por:	Julieta	Descripción:	-		
+Probado Por:	Julieta | Lara	Probado en:	Windows		
+					
+Prueba #	Fecha	Acción	Resultado esperado	Resultado actual	Aprobado
+1	09/08/2022	Log In	Iniciar con usuario	No inicia con ningun usuario	FALSO
+2	09/08/2022	Registrarse	Tomar datos y cargar en la BD	"Toma los fatos y se 
+guardan en la BD"	VERDADERO
+3	09/08/2022				FALSO
+					
+
+
+
+
+
+
+Link de excel: https://docs.google.com/spreadsheets/d/1LvfZg9E8g-AkMy2OpgqwU4t55sA7etqdjVxXc6p9qaw/edit#gid=0
