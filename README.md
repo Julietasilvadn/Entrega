@@ -1,6 +1,6 @@
 # Entrega
 
-# VIDEO:
+# VIDEO: https://youtu.be/GvsB8qndMEw
 
 # Integrantes:
 - Juan Echenique: creación de modelos, elección de bootstrap, login
