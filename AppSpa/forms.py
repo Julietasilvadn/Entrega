@@ -12,10 +12,9 @@ class UsuarioFormulario(forms.Form):
 
 class MascotaFormulario(forms.Form):
     nombre= forms.CharField()
-    raza= forms.CharField()
-    edad= forms.IntegerField()
+    nacimiento= forms.DateField()
+    imagen= forms.ImageField()
 
 class ReservaFormulario(forms.Form):
-    dueño= forms.CharField()
     mascota= forms.CharField()
-    fecha= forms.DateTimeField()
+    dia= forms.CharField()

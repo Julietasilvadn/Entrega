@@ -18,6 +18,7 @@ urlpatterns = [
     path(r'^borrar/(?P<pk>\d+)$', views.DeleteUsuario.as_view(), name='Eliminar'),
     path('mascotas/', mostrar_mascotas, name='mascotas'),
     path('perfil/', mostrar_perfil, name='perfil'),
-    path('reserva/', mostrar_reserva, name='reserva'),
+    path('reserva/', reserva_formulario, name='reserva'),
     path('registro/', registrarse_formulario, name='registro'),
+    path('about/', mostrar_about, name='about'),
     ]

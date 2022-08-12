@@ -9,24 +9,23 @@ class Usuario(models.Model):
     contraseña= models.CharField(max_length=30)
     
     def __str__(self):
-        return f"Nombre: {self.nombre} - Apellido: {self.apellido} - DNI: {self.dni} - Email: {self.email} - Contraseña: {self.contraseña}"
+        return f"Nombre: {self.nombre} - Apellido: {self.apellido}"
 
 class Mascota(models.Model):
     nombre= models.CharField(max_length=30)
-    raza= models.CharField(max_length=30)
-    edad= models.IntegerField()
+    nacimiento= models.DateTimeField(auto_now=True)
+    imagen= models.ImageField(upload_to='avatares', null=True, blank=True)
 
     def __str__(self):
-        return f"Nombre: {self.nombre} - Raza: {self.raza} - Edad: {self.edad}"
+        return f"Nombre: {self.nombre} - Nacimiento: {self.nacimiento}"
 
 
 class Reserva(models.Model):
-    dueño= models.CharField(max_length=40)
     mascota= models.CharField(max_length=40)
-    fecha= models.DateTimeField()
+    dia= models.CharField(max_length=40)
 
     def __str__(self):
-        return f"Dueño: {self.dueño} - Mascota: {self.mascota} - Fecha: {self.fecha}"
+        return f"Mascota: {self.mascota} - Dia: {self.dia}"
 
 class Avatar(models.Model):
     user = models.ForeignKey(Usuario, on_delete=models.CASCADE)

@@ -30,6 +30,9 @@ def mostrar_reserva(request):
 def mostrar_registro(request):
     return render(request, "AppSpa/registrarse_form.html")
 
+def mostrar_about(request):
+    return render(request, "AppSpa/about.html")
+
 def registrarse_formulario(request):
     if request.method == "POST":
         miFormulario = UsuarioFormulario(request.POST)
@@ -154,3 +157,16 @@ def register(request):
         form = UsuarioFormulario()
 
     return render(request, 'AppSpa/login.html', {'form':form})
+
+def reserva_formulario(request):
+    if request.method == "POST":
+        miReserva = ReservaFormulario(request.POST)
+        print(miReserva)
+        if miReserva.is_valid:
+            informacion = miReserva.cleaned_data
+            reserva = Reserva(mascota=informacion['mascota'], dia=informacion['dia'])
+            reserva.save()
+            return render(request, "AppSpa/inicio.html")
+    else:
+        miReserva=ReservaFormulario()
+    return render(request, "AppSpa/reserva.html", {"miReserva":miReserva})
