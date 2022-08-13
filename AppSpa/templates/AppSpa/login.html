@@ -1,5 +1,6 @@
-
-{% block cuerpo  %}
+{% extends "AppSpa/base_registrarse.html" %}
+{% load static %}
+{% block cuerpo %}
 <html lang="en">
     <head>
         
@@ -12,10 +13,6 @@
         
         {% load static %}
 
-        {% block link-css  %}
-        <link href="{% static 'AppSpa/css/styles.css'%}" rel="stylesheet" />
-        <link href="{% static 'AppSpa/css/test.css'%}" rel="stylesheet" />
-        {% endblock %}
 
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Font Awesome icons (free version)-->
@@ -28,33 +25,45 @@
         <!-- Custom styles for this template -->
     </head>
 <body class="test-body">
-  <nav class="navbar-test" id="mainNav">
-    <div class="container">
-        <a class="navbar-brand" href="{% url 'inicio'%}">Spa para Animales</a>
-        
-    </div>
-  </nav>
+ 
     
 <main class="main-test">
   <form class="form-test2">
     
-    <h1 class="h3 mb-3 fw-normal">Inicia Sesion</h1>
+    <h1 class="head">Inicie Sesion</h1>
+    <br>
 
+    <h5>
     <div class="form-test1">
-      <input type="email" class="inputs" id="floatingInput" placeholder="">
+
       <label class="test-label" for="floatingInput">Email</label>
-    </div>
-    <div class="form-test1">
-      <input type="password" class="inputs" id="floatingPassword" placeholder="">
-      <label class="test-label" for="floatingPassword">Contraseña</label>
+      <input type="email" class="inputs" id="floatingInput" placeholder="">
+      
     </div>
 
+    <br>
+
+    <div class="form-test1">
+
+      <label class="test-label" for="floatingPassword">Contraseña</label>
+      <input type="password" class="inputs" id="floatingPassword" placeholder="">
+      
+    </div>
+    </h5>
+    <br>
+    <h6>
     <div class="label-checkbox">
       <label class="label-checkbox2">
         <input class="label-checkbox-input" type="checkbox" value="remember-me"> Recordarme
       </label>
     </div>
+    </h6>
+
+    <br>
+
+    <h5>
     <input class="test-bttn" type="submit" id="btn-submit" value="Entrar">
+    </h5>
   </form>
 </main>
 <div class="footer-main">

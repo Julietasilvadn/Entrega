@@ -21,4 +21,6 @@ urlpatterns = [
     path('reserva/', reserva_formulario, name='reserva'),
     path('registro/', registrarse_formulario, name='registro'),
     path('about/', mostrar_about, name='about'),
+    path('login-user/', Login.as_view(), name='login'),
+    path('logout-user/', Logout.as_view(), name='logout')
     ]

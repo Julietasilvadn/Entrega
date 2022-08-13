@@ -11,6 +11,7 @@ from django.views.generic.detail import DetailView
 from AppSpa.forms import  *
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth.views import LoginView, LogoutView
 
 def mostrar_login(request):
     return render(request, "AppSpa/login.html")
@@ -170,3 +171,13 @@ def reserva_formulario(request):
     else:
         miReserva=ReservaFormulario()
     return render(request, "AppSpa/reserva.html", {"miReserva":miReserva})
+
+
+class Login(LoginView):
+    template_name = 'AppSpa/login.html'
+    next_page = reverse_lazy('inicio')
+
+
+class Logout(LogoutView):
+    template_name = 'AppSpa/logout.html'
+
