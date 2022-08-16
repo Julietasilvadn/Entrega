@@ -13,6 +13,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.views import LoginView, LogoutView
 
+
 def mostrar_login(request):
     return render(request, "AppSpa/login.html")
 
@@ -180,4 +181,3 @@ class Login(LoginView):
 
 class Logout(LogoutView):
     template_name = 'AppSpa/logout.html'
-
