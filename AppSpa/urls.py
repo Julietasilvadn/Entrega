@@ -23,4 +23,7 @@ urlpatterns = [
     path('about/', mostrar_about, name='about'),
     path('login-user/', views.login_request, name='login'),
     path('logout-user/', Logout.as_view(), name='logout')
+    path('login-user/', Login.as_view(), name='login'),
+    path('logout-user/', Logout.as_view(), name='logout'),
+
     ]
