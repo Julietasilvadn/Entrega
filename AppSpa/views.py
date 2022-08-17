@@ -131,9 +131,9 @@ def login_request(request):
 
         if form.is_valid():
             usuario = form.cleaned_data.get('username')
-            contraseña = form.cleaned_data.get('contraseña')
+            contraseña = form.cleaned_data.get('password')
 
-            user = authenticate(usernarme=usuario, contraseña=contraseña)
+            user = authenticate(username=usuario, password=contraseña)
 
             if user is not None:
                 login (request, user)
